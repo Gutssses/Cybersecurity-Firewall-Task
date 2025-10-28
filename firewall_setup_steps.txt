@@ -1,0 +1,139 @@
+Firewall Configuration and Traffic Filtering
+Objective
+
+The objective of this task is to configure and test basic firewall rules on a local system (Windows or Linux) to understand how firewalls manage, filter, and control network traffic.
+This task demonstrates the practical implementation of port blocking, rule creation, and traffic testing, which are foundational concepts in network security.
+
+What is a Firewall?
+
+A firewall is a security mechanism that monitors and filters network traffic based on a defined set of rules.
+It acts as a barrier between a trusted internal network and an untrusted external network (such as the Internet).
+
+Firewalls can be implemented in two main forms:
+
+Software firewalls: Installed on individual systems (e.g., Windows Defender Firewall, UFW on Linux).
+
+Hardware firewalls: Dedicated devices used in enterprise networks to control large-scale traffic.
+
+Purpose:
+
+Prevent unauthorized access.
+
+Allow legitimate communications.
+
+Reduce exposure to network-based threats.
+
+Firewall Rule Concepts
+Term	Description
+Inbound Rules	Control incoming traffic (data entering your system).
+Outbound Rules	Control outgoing traffic (data leaving your system).
+Port	A virtual communication endpoint used by specific services (e.g., Port 80 = HTTP, Port 443 = HTTPS).
+Protocol	Defines how data is transmitted (TCP or UDP).
+Action	Whether to allow or block a connection attempt.
+Windows Firewall Configuration
+Step 1: Open Windows Defender Firewall
+
+Press Windows + R, type wf.msc, and hit Enter.
+
+This opens Windows Defender Firewall with Advanced Security.
+
+The left panel displays:
+
+Inbound Rules
+
+Outbound Rules
+
+Monitoring
+
+Connection Security Rules
+
+Why:
+Accessing this interface allows you to manually configure which ports or programs can communicate through your computer’s network connection.
+
+Step 2: Review Current Firewall Rules
+
+Click Inbound Rules → View existing rules that control incoming traffic.
+
+Click Outbound Rules → View existing rules for outgoing traffic.
+
+This helps ensure you don’t accidentally create duplicate or conflicting rules.
+
+Step 3: Block Inbound Traffic on Port 23 (Telnet)
+
+Reason:
+Telnet is an old protocol that transmits data (including passwords) in plaintext, making it insecure. It uses TCP Port 23.
+Blocking this port prevents unauthorized remote access attempts.
+
+Steps:
+
+Click Inbound Rules → New Rule...
+
+Select Port → click Next.
+
+Choose TCP and enter 23.
+
+Select Block the connection → Next.
+
+Apply to Domain, Private, and Public profiles → Next.
+
+Name the rule: Block Telnet Port 23 → click Finish.
+
+Result:
+All inbound connections using TCP Port 23 are now blocked by the firewall.
+
+Step 4: Test the Telnet Block Rule
+
+To verify the rule:
+
+Open Command Prompt.
+
+Type:
+
+telnet localhost 23
+
+
+You should see:
+
+Connecting to localhost...
+Could not open connection to the host, on port 23: Connect failed
+
+
+This confirms that Port 23 has been successfully blocked.
+
+Step 5: Allow SSH (Port 22)
+
+SSH (Secure Shell) is a modern, encrypted alternative to Telnet.
+
+Steps:
+
+Go to Inbound Rules → New Rule...
+
+Choose Port → TCP → 22 → Next.
+
+Select Allow the connection → Next.
+
+Apply to all profiles (Domain, Private, Public).
+
+Name it: Allow SSH (Port 22) → Finish.
+
+This ensures secure remote access while Telnet remains blocked.
+
+Step 6: Remove or Reset Test Rules
+
+Once testing is complete, remove or reset your firewall configuration.
+
+To remove a single rule:
+
+Go to Inbound Rules.
+
+Find the rule Block Telnet Port 23.
+
+Right-click → Delete.
+
+To reset all rules to default:
+
+Open Control Panel → System and Security → Windows Defender Firewall.
+
+Click Restore defaults on the left.
+
+Confirm with Yes.

@@ -1,0 +1,17 @@
+             
+What is a firewall?
+A network security system that filters incoming and outgoing traffic.          
+Stateful vs Stateless firewall?  
+Stateful tracks active connections; Stateless checks each packet individually. 
+Inbound vs Outbound rules?
+Inbound = incoming traffic; Outbound = outgoing traffic.                       
+How does UFW simplify management?
+It provides simple commands to manage complex iptables rules.                  
+Why block port 23 (Telnet)?
+Telnet is insecure; data is sent in plain text.                                
+Common firewall mistakes?         
+Leaving unused ports open or misconfiguring rules.                            
+How does a firewall improve security?
+ It limits attack surfaces and filters unauthorized traffic.                    
+What is NAT in firewalls?
+Network Address Translation — hides private IPs behind public ones.            
